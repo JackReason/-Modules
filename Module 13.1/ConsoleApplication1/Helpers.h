@@ -1,1 +1,0 @@
-int sqr(int a, int b);
