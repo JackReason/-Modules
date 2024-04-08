@@ -1,30 +1,39 @@
 
 #include <iostream>
-#include <string>
+#include <ctime>
 using namespace std;
-int OddFind(const int length, bool odd);
-const int N = 13;
 
 int main()
-{   
-	cout << "first task\n";
-	for (int i = 0; i <= N; i++)
-	{
-		if (i % 2 == 0 && i!=0)
-			cout << i << "\n";
-	}
-	cout << "Second task\n";
-     OddFind(N, true);
-	 
-
-	
-}
-int OddFind( const int lenght, bool odd)
 {
-	for (int i = 2-odd; i <= lenght; i += 2 )
+	int i;
+	int j;
+	const int N = 7;
+	int array[N][N];
+	cout << "Massive:\n";
+	for ( i = 0; i < N; i++)
 	{
-		cout << i << "\n";
+		for ( j = 0; j < N; j++)
+		{
+			array[i][j] = i + j;
+			cout << array[i][j] << " ";
+		}
+		cout << "\n";
 	}
-	return 0;
+
+	time_t now;
+	struct tm nowLocal;
+	now = time(NULL);
+	localtime_s(&nowLocal, &now);
+	cout << "Today is : " << nowLocal.tm_mday;
+	int day = nowLocal.tm_mday;
+	int sum = 0;
+
+	for (j = 0;j < N; j++ )
+	{
+		sum += array[day % N][j];
+	}
+	cout << "\nsum=" << sum;
+
 }
+
 
