@@ -1,38 +1,48 @@
 
 #include <iostream>
-#include <ctime>
+#include <math.h>
 using namespace std;
+
+class Vector
+{
+private:
+	float x;
+	float y;
+	float z;
+public:
+	Vector()
+	{
+		x = 0;
+		y = 0;
+		z = 0;
+	}
+	Vector(float _x, float _y, float _z) : x(_x), y(_y), z(_z)
+	{
+
+	}
+	void getVector()
+	{
+		cout << x << " " << y << " " << z << "\n";
+	}
+	float lengthVector()
+	{
+		float sum = pow(x, 2) + pow(y, 2) + pow(z, 2);
+		float length = sqrt(sum);
+		return length;
+	}
+};
+
 
 int main()
 {
-	int i;
-	int j;
-	const int N = 7;
-	int array[N][N];
-	cout << "Massive:\n";
-	for ( i = 0; i < N; i++)
-	{
-		for ( j = 0; j < N; j++)
-		{
-			array[i][j] = i + j;
-			cout << array[i][j] << " ";
-		}
-		cout << "\n";
-	}
-
-	time_t now;
-	struct tm nowLocal;
-	now = time(NULL);
-	localtime_s(&nowLocal, &now);
-	cout << "Today is : " << nowLocal.tm_mday;
-	int day = nowLocal.tm_mday;
-	int sum = 0;
-
-	for (j = 0;j < N; j++ )
-	{
-		sum += array[day % N][j];
-	}
-	cout << "\nsum=" << sum;
+	cout << "default init :\n";
+	Vector mine;
+	mine.getVector();
+	cout << "by parameters init :\n";
+	Vector yours(-5, 10, 12.16);
+	yours.getVector();
+	cout << "\n Your vector length would be like : " << yours.lengthVector() << endl;
+	
 
 }
 
