@@ -1,49 +1,95 @@
 
 #include <iostream>
-#include <math.h>
+#include <string>
+#include <algorithm>
 using namespace std;
 
-class Vector
+class player
 {
 private:
-	float x;
-	float y;
-	float z;
+	string name = "noname";
+	int points = 0;
 public:
-	Vector()
+	void getName()
 	{
-		x = 0;
-		y = 0;
-		z = 0;
+		cin >> name;
 	}
-	Vector(float _x, float _y, float _z) : x(_x), y(_y), z(_z)
+	string showName()
 	{
-
+		return name;
 	}
-	void getVector()
+	void getPoints()
 	{
-		cout << x << " " << y << " " << z << "\n";
+		cin >> points;
 	}
-	float lengthVector()
+	int showPoints()
 	{
-		float sum = pow(x, 2) + pow(y, 2) + pow(z, 2);
-		float length = sqrt(sum);
-		return length;
+		return points;
 	}
 };
+
+void masShuffle(player* pointer, int num); 
+void showBoard(player* pointer, int num);  
 
 
 int main()
 {
-	cout << "default init :\n";
-	Vector mine;
-	mine.getVector();
-	cout << "by parameters init :\n";
-	Vector yours(-5, 10, 12.16);
-	yours.getVector();
-	cout << "\n Your vector length would be like : " << yours.lengthVector() << endl;
+	int numPlrs;
+	cout << "How many players?\n";
+	cin >> numPlrs;
+	player* p = new player[numPlrs];
+	cout << "\nSo we got : " << numPlrs << " players\n";
+	cout << "Let's name our players and give'em some scores\n";
+
+	for (int i = 0; i < numPlrs; i++)
+	{
+		cout << "\nplayer number " << (i + 1) << " name is ";
+		(p + i)->getName();
+		cout << (p + i)->showName() << "'s scores are : ";
+		(p + i)->getPoints();
+
+
+	}
+	
+	cout << "\nso now we have this board\n";
+	showBoard(p, numPlrs);
+	cout << "\nLet us shuffle numbers a bit\n";
+	masShuffle(p, numPlrs);
+	showBoard(p, numPlrs);
+	delete[] p;
+	cout << "\nThe end";
+
+
 	
 
 }
 
 
+void masShuffle(player* pointer, int num)
+{
+	double factor = 1.25;
+	int step = num-1;
+	while (step >= 1)
+	{
+		for (int i = 0; i + step < num; i++)
+		{
+			if ((pointer + i)->showPoints() < (pointer + i + step)->showPoints())
+			{
+				std::swap(*(pointer + i), *(pointer + i + step));
+			}
+		}
+		step /= factor;
+	}
+}
+
+void showBoard(player* pointer, int num)
+{
+	for (int i = 0; i < num; i++)
+	{
+		cout << (pointer + i)->showName();
+		cout << " scores " << (pointer + i)->showPoints();
+		cout << "\n";
+
+	}
+
+}
