@@ -1,3 +1,2 @@
 ﻿  ConsoleApplication1.cpp
-C:\Users\Green\Desktop\C++ Modules\Module 13.1\ConsoleApplication1\ConsoleApplication1.cpp(81,11): warning C4244: '/=': conversion from 'double' to 'int', possible loss of data
   ConsoleApplication1.vcxproj -> C:\Users\Green\Desktop\C++ Modules\Module 13.1\x64\Debug\ConsoleApplication1.exe
